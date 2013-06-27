@@ -128,9 +128,9 @@ class HandBrake(object):
         if not os.path.isfile(inMovie):
             print "Input file no longer exists"
             return False
-
+        print 'nice -n %d /Applications/HandBrakeCLI --verbose 1 -i "%s" -o "%s" %s 2> %s' % (nice, inMovie, outMovie, args, output)
         commands.getstatusoutput(
-            'nice -n %d HandBrakeCLI --verbose 1 -i "%s" -o "%s" %s 2> %s'
+            'nice -n %d /Applications/HandBrakeCLI --verbose 1 -i "%s" -o "%s" %s 2> %s'
             %
             (nice, inMovie, outMovie, args, output))
 

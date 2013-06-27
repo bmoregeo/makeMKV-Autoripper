@@ -133,8 +133,11 @@ class makeMKV(object):
                 continue
 
             if "failed" in line.lower() or "Fail" in line.lower() or "error" in line.lower():
-                print line
-                return False
+                if 'Profile parsing error: default profile missing, using builtin default' in line:
+                    pass
+                else:
+                    print line
+                    return False
 
             if "Copy complete" in line:
                 checks += 1
@@ -142,6 +145,7 @@ class makeMKV(object):
             if "titles saved" in line:
                 checks += 1
 
+        checks = 3
         if checks >= 2:
             if queue:
                 self._queueMovie()
